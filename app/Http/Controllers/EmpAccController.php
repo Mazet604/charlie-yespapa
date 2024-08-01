@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Models\EmpAcc;
 
 class EmpAccController extends Controller
 {
@@ -63,4 +64,26 @@ class EmpAccController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function getCreds()
+    {
+        try {
+            $user = Auth::user(); // Get the currently authenticated user
+            if (!$user) {
+                return response()->json(['error' => 'User not authenticated'], 401);
+            }
+    
+            $emp_acc = EmpAcc::where('empid', $user->empid)->first(); // Fetch emp_acc using empid
+            if (!$emp_acc) {
+                return response()->json(['error' => 'Employee not found'], 404);
+            }
+    
+            $empUser = $emp_acc->empuser;
+            $empID = $emp_acc->empid;
+            return response()->json(['empUser' => $empUser, 'empID' => $empID]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
 }

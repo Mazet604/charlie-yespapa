@@ -11,17 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lib_acc_status', function (Blueprint $table) {
-            $table->increments('lib_count');  
-            $table->string('empid');
-            $table->string('lib_stat', 35);  
-            $table->string('lib_desc', 35);  
+        Schema::create('lib_regions', function (Blueprint $table) {
+            $table->increments('libr1_count');  
+            $table->string('libr1_region', 35);  
             $table->timestamps();  // Add timestamps for created_at and updated_at
-
-            $table->foreign('empid')
-            ->references('empid')
-            ->on('emp_acc')
-            ->onUpdate('cascade');
         });
     }
 
@@ -30,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lib_acc_status');
+        Schema::dropIfExists('lib_regions');
     }
 };

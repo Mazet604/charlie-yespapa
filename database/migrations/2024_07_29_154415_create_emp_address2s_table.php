@@ -15,14 +15,14 @@ return new class extends Migration
             $table->increments('add2_count');  
             $table->unsignedInteger('emp_count');  
             $table->string('emp_house2',20);
-            $table->string('emp_street2',20);
+            $table->string('emp_street2',30);
             $table->string('emp_subd2',30); //30 for subdivisions with high character count
-            $table->string('emp_brgy2',20);
-            $table->string('emp_city2',20);
-            $table->string('emp_prov2',20);
+            $table->string('emp_brgy2',45);
+            $table->string('emp_city2',30);
+            $table->string('emp_prov2',30);
             $table->string('emp_region2',20);
+            $table->string('emp_country2',60); //60 for the countries with high character count
             $table->date('emp_datereg2');
-            $table->string('emp_pob2',20);
             $table->string('emp_zip2s',6);
             $table->timestamps();  // Add timestamps for created_at and updated_at
 

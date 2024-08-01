@@ -13,7 +13,8 @@ class EmpAcc extends Authenticatable
     protected $table = 'emp_acc';
 
     protected $primaryKey = 'empid';
-
+    public $incrementing = false; // Since empid is not auto-incrementing
+    protected $keyType = 'string'; // Since empid is a string
 
     protected $fillable = [
         'empid',

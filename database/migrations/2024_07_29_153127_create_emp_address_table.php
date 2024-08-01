@@ -14,17 +14,14 @@ return new class extends Migration
         Schema::create('emp_address', function (Blueprint $table) {
             $table->increments('add_count');
             $table->unsignedInteger('emp_count');    
-            $table->string('emp_citizen',30);
-            $table->string('emp_country',60); //60 for the countries with high character count
             $table->string('emp_house',20);
-            $table->string('emp_street',20);
+            $table->string('emp_street',30);
             $table->string('emp_subd',30); //30 for subdivisions with high character count
-            $table->string('emp_brgy',20);
-            $table->string('emp_city',20);
-            $table->string('emp_prov',20);
+            $table->string('emp_brgy',45);
+            $table->string('emp_city',30);
+            $table->string('emp_prov',30);
             $table->string('emp_region',20);
-            $table->date('emp_datereg');
-            $table->string('emp_pob',20);
+            $table->string('emp_country',60); //60 for the countries with high character count
             $table->string('emp_zip',6);
             $table->timestamps();  // Add timestamps for created_at and updated_at
 

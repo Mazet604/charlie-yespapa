@@ -20,19 +20,19 @@
                 <Button label="Upload Photo" class="w-full py-2 mt-4 text-white rounded-lg bg-gradient-to-r from-pink-500 to-purple-500" />
             </div>
             <div class="col-span-1 md:col-span-2">
-                <h1 class="mb-4 text-3xl lg:text-5xl font-bold">HABIBI, ABDUL JABLE</h1>
-                <p class="mb-4 text-gray-600">ADMINISTRATIVE ASSISTANT II</p>
+                <h1 class="mb-4 text-3xl lg:text-5xl font-bold">{{ fullName }}</h1> <!-- DISPLAY FULL NAME FROM EMPLOYEE TABLE -->
+                <p class="mb-4 text-gray-600">{{ empPosition }}</p> <!-- DISPLAY POSITION FROM EMPLOYEE TABLE -->
                 <div class="border-box">
                     <TabView v-model:activeIndex="activeTab" class="no-background">
                         <TabPanel header="PERSONAL INFO">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block mb-2 text-sm font-bold text-gray-700">USER NAME</label>
-                                    <input type="text" class="input-field" v-model="fields.username.value" disabled placeholder="Disabled" />
+                                    <input type="text" class="input-field" v-model="empUser" disabled placeholder="Disabled" />
                                 </div>
                                 <div>
                                     <label class="block mb-2 text-sm font-bold text-gray-700">EMPLOYEE ID</label>
-                                    <input type="text" class="input-field" v-model="fields.employeeId.value" disabled placeholder="Disabled" />
+                                    <input type="text" class="input-field" v-model="empID" disabled placeholder="Disabled" />
                                 </div>
                                 <div>
                                     <label class="block mb-2 text-sm font-bold text-gray-700">FIRST NAME</label>
@@ -197,6 +197,53 @@
     </AppLayout>
 </template>
 
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      fullName: '',
+      empPosition: '',
+      empuser: '',
+      empid: '',
+      errorMessage: ''
+    };
+  },
+  methods: {
+    async fetchFullName() {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/employee/fullname');
+        this.fullName = response.data.fullName;
+        this.empPosition = response.data.empPosition;
+      } catch (error) { //In case of errors
+        if (error.response && error.response.status === 500) {
+          this.errorMessage = 'Internal Server Error. Please try again later.';
+          console.error('Internal Server Error:', error.response.data);
+        } else {
+          this.errorMessage = 'An error occurred. Please try again.';
+          console.error('Error:', error);
+        }
+      }
+    },
+
+    async fetchEmpCreds(){
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/emp_acc/empuser');
+            this.empUser = response.data.empUser;
+            this.empID = response.data.empID;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+  },
+  mounted() {
+    this.fetchFullName();
+    this.fetchEmpCreds();
+  }
+};
+</script>
+
 <script setup>
 import { ref } from 'vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
@@ -206,22 +253,22 @@ import TabPanel from 'primevue/tabpanel';
 
 const activeTab = ref(0);
 const fields = ref({
-    username: { label: 'User Name', type: 'text', value: 'AJHABIBI' },
-    employeeId: { label: 'Employee ID', type: 'text', value: '11-0070' },
-    firstName: { label: 'First Name', type: 'text', value: 'ABDUL' },
-    middleName: { label: 'Middle Name', type: 'text', value: 'JABLE' },
-    lastName: { label: 'Last Name', type: 'text', value: 'HABIBI' },
-    citizenship: { label: 'Citizenship', type: 'text', value: 'FILIPINO' },
-    birthday: { label: 'Birthday', type: 'date', value: '2000-11-01' },
-    placeOfBirth: { label: 'Place of Birth', type: 'text', value: 'DAVAO CITY' },
-    height: { label: 'Height (m)', type: 'number', value: 1.82 },
-    weight: { label: 'Weight (kg)', type: 'number', value: 74 },
-    zipcode: { label: 'Zip Code', type: 'number', value: 'N/A' },
-    block: { label: 'BLOCK/STREET/PUROK', type: 'text', value: 'N/A' },
-    villsub: { label: 'VILLAGE SUBDIVISION', type: 'text', value: 'N/A' },
-    mobilenum: { label: 'MOBILE NUMBER', type: 'number', value: '09088184444' },
-    telnum: { label: 'TELEPHONE NUMBER', type: 'number', value: '22222222' },
-    emailadd: { label: 'EMAIL ADDRESS', type: 'text', value: 'ABJHABIBI@DSWD.GOV.PH' },
+    username: { label: 'User Name', type: 'text', value: '' },
+    employeeId: { label: 'Employee ID', type: 'text', value: '' },
+    firstName: { label: 'First Name', type: 'text', value: '' },
+    middleName: { label: 'Middle Name', type: 'text', value: '' },
+    lastName: { label: 'Last Name', type: 'text', value: '' },
+    citizenship: { label: 'Citizenship', type: 'text', value: '' },
+    birthday: { label: 'Birthday', type: 'date', value: '' },
+    placeOfBirth: { label: 'Place of Birth', type: 'text', value: '' },
+    height: { label: 'Height (m)', type: 'number', value: ''},
+    weight: { label: 'Weight (kg)', type: 'number', value:'' },
+    zipcode: { label: 'Zip Code', type: 'number', value: '' },
+    block: { label: 'BLOCK/STREET/PUROK', type: 'text', value: '' },
+    villsub: { label: 'VILLAGE SUBDIVISION', type: 'text', value: '' },
+    mobilenum: { label: 'MOBILE NUMBER', type: 'number', value: '' },
+    telnum: { label: 'TELEPHONE NUMBER', type: 'number', value: '' },
+    emailadd: { label: 'EMAIL ADDRESS', type: 'text', value: '' },
     pass: { label: 'PASSWORD', type: 'text', value: 'password' }
 });
 

@@ -19,21 +19,22 @@ return new class extends Migration
             $table->string('emp_lname',35);
             $table->string('emp_ext',10);
             $table->date('emp_dob');
-            $table->string('emps_ex',10);
+            $table->string('emp_pob',20);
+            $table->string('emp_position',45);
+            $table->integer('emp_age');
+            $table->string('emp_sex',10);
             $table->string('emp_blood',10);
             $table->decimal('emp_height',3,2);
             $table->integer('emp_weight');
+            $table->string('emp_citizen', 35);
             $table->integer('emp_cnum');
-            $table->string('emp_email',35);
             $table->string('emp_idlicense',35);
             $table->string('emp_idplace',35);
             $table->string('emp_iduse',35);
             $table->date('emp_iddate');
             $table->integer('emp_telnum');
             $table->string('emp_religion',35);
-            $table->integer('empage');
             $table->integer('User_type');
-            $table->string('other_40b',5);
             $table->string('esignature',35);//accepts pdf,png,jpeg only
             $table->string('emp_disability',5);//yes or no if no fill up in emp_pwd
             $table->string('emp_ip',5); //yes or no if no fill up in emp_ip_group
