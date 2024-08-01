@@ -47,6 +47,12 @@
                                     <input type="text" class="input-field" v-model="fields.lastName.value" />
                                 </div>
                                 <div>
+                                    <label class="block mb-2 text-sm font-bold text-gray-700">SUFFIX</label>
+                                    <select class="input-field" v-model="selectedExt">
+                                        <option v-for="option in extOptions" :key="option.value" :value="option.value">{{ option.label }}</option>
+                                    </select>
+                                </div>
+                                <div>
                                     <label class="block mb-2 text-sm font-bold text-gray-700">CITIZENSHIP</label>
                                     <input type="text" class="input-field" v-model="fields.citizenship.value" />
                                 </div>
@@ -260,6 +266,12 @@ const fields = ref({
     emailadd: { label: 'EMAIL ADDRESS', type: 'text', value: '' },
     pass: { label: 'PASSWORD', type: 'text', value: 'password' }
 });
+
+const extOptions = ref([
+    { label: 'N/A', value: 'N/A' },
+    { label: 'JR.', value: 'JR.' },
+    { label: 'SR.', value: 'SR.' }
+]);
 
 const sexOptions = ref([
     { label: 'MALE', value: 'MALE' },
