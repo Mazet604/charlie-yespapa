@@ -226,20 +226,9 @@ export default {
         }
       }
     },
-
-    async fetchEmpCreds(){
-        try {
-            const response = await axios.get('http://127.0.0.1:8000/emp_acc/empuser');
-            this.empUser = response.data.empUser;
-            this.empID = response.data.empID;
-        } catch (error) {
-            console.log(error);
-        }
-    }
   },
   mounted() {
     this.fetchFullName();
-    this.fetchEmpCreds();
   }
 };
 </script>
