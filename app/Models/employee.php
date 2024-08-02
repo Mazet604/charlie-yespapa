@@ -18,4 +18,14 @@ class employee extends Model
     {
         return $this->belongsTo(EmpAcc::class, 'empid', 'empid');
     }
+
+    public function PersonalInfo()
+    {
+        return $this->belongsTo(EmpAcc::class, 'empid', 'empid');
+    }
+
+    public function SecurityandContact()
+    {
+        return $this->belongsTo(EmpAcc::class, 'empid', 'empid');
+    }
 }

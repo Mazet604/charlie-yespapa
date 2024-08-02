@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lib_brgies', function (Blueprint $table) {
-            $table->increments('libb1_count');  
-            $table->string('libb1_brgy', 35);  
+            $table->string('psgc')->primary();  
+            $table->string('col_brgy', 60);  
             $table->timestamps();  // Add timestamps for created_at and updated_at
         });
     }

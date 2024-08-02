@@ -65,24 +65,21 @@ class EmpAccController extends Controller
         return Redirect::to('/');
     }
 
-    public function getCreds()
+    public function getEmpUser()
     {
-        try {
-            $user = Auth::user(); // Get the currently authenticated user
-            if (!$user) {
-                return response()->json(['error' => 'User not authenticated'], 401);
-            }
-    
-            $emp_acc = EmpAcc::where('empid', $user->empid)->first(); // Fetch emp_acc using empid
-            if (!$emp_acc) {
-                return response()->json(['error' => 'Employee not found'], 404);
-            }
-    
-            $empUser = $emp_acc->empuser;
-            $empID = $emp_acc->empid;
-            return response()->json(['empUser' => $empUser, 'empID' => $empID]);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+        // Assuming you have a logged-in user
+        $user = Auth::user();
+
+        // Fetch the employee account details
+        $empAcc = EmpAcc::where('empid', $user->id)->first();
+
+        if ($empAcc) {
+            return response()->json([
+                'empUser' => $empAcc->empUser,
+                'empID' => $empAcc->empID
+            ]);
+        } else {
+            return response()->json(['error' => 'Employee not found'], 404);
         }
     }
 

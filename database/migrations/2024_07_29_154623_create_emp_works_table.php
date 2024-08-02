@@ -17,9 +17,9 @@ return new class extends Migration
             $table->date('workfr');  
             $table->date('workto');  
             $table->string('work_pos', 45); 
-            $table->string('work_dept', 45); 
+            $table->string('work_dept', 100)->nullable(); 
             $table->decimal('work_salary', 10,2);
-            $table->integer('work_salarygrade'); 
+            $table->integer('work_salarygrade')->nullable(); 
             $table->string('work_stat', 35); 
             $table->string('work_gov', 5);
             $table->timestamps();  // Add timestamps for created_at and updated_at

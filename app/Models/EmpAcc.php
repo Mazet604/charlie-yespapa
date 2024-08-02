@@ -36,12 +36,7 @@ class EmpAcc extends Authenticatable
     {
         $this->attributes['emppass'] = bcrypt($value);
     }
-
-    public static function getEmpAccById($id)
-    {
-        return DB::table('emp_acc')->where('acc_count', $id)->first();
-    }
-
+    
     public function getAuthPassword()
     {
         return $this->emppass;

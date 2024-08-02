@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('education_level', function (Blueprint $table) {
             $table->increments('lvl_count');  // Primary key
-            $table->string('level_name', 100);
+            $table->string('level_name', 100)->nullable();  
             $table->timestamps();
         });
     }

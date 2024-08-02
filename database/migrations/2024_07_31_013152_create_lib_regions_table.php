@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lib_regions', function (Blueprint $table) {
-            $table->increments('libr1_count');  
-            $table->string('libr1_region', 35);  
+            $table->string('psgc')->primary();  
+            $table->string('col_region', 60);  
             $table->timestamps();  // Add timestamps for created_at and updated_at
         });
     }

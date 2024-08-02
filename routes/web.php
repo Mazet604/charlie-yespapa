@@ -34,6 +34,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/employee/fullname', [EmployeeController::class, 'getEmployee']);
+    Route::get('/employee/PersonalInfo', [EmployeeController::class, 'getPersonalInfo']);
+    Route::get('/employee/SecurityandContact', [EmployeeController::class, 'getSecurityandContact']);
     Route::get('/emp_acc/empuser', [EmpAccController::class, 'getCreds']);
 });
 

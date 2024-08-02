@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('emer_fname',35);
             $table->string('emer_mname',35);
             $table->string('emer_lname',35);
-            $table->string('emer_xname',10);
+            $table->string('emer_xname',10)->nullable();
             $table->integer('emer_cnum');
             $table->timestamps();  // Add timestamps for created_at and updated_at
 
